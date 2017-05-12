@@ -125,7 +125,7 @@ def init(FILE):
         file_not_found_message(FILE)
 
 
-def get(section, key):
+def get(section, key, **kwargs):
     """
     returns the value of a given key of a given section of the main
     config file.
@@ -143,15 +143,15 @@ def get(section, key):
     if not _loaded:
         init(FILE)
     try:
-        return cfg.getfloat(section, key)
+        return cfg.getfloat(section, key, **kwargs)
     except Exception:
         try:
-            return cfg.getint(section, key)
+            return cfg.getint(section, key, **kwargs)
         except:
             try:
-                return cfg.getboolean(section, key)
+                return cfg.getboolean(section, key, **kwargs)
             except:
-                return cfg.get(section, key)
+                return cfg.get(section, key, **kwargs)
 
 
 def set(section, key, value):
